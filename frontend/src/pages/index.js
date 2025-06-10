@@ -38,8 +38,11 @@ export default function Home() {
       days_before: modifiedDaysBefore,
     };
 
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
     try {
-      const response = await axios.post('http://localhost:8000/backtest', modifiedData);
+      //const response = await axios.post('http://localhost:8000/backtest', modifiedData);
+      const response = await axios.post(`${backendUrl}/backtest`, modifiedData);
       if (response.data.success) {
         setResults(response.data);
       } else {
