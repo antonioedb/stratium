@@ -39,11 +39,12 @@ export const ResultsTable = ({ trades }) => {
               {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Preço Inicial</th> */}
               {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Preço Final</th> */}
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mudança de preços</th>
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Furou Range</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Resultado</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Resultado %</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dias</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Saída Antecipada</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Furou Range</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -61,6 +62,7 @@ export const ResultsTable = ({ trades }) => {
                   <td className={`px-6 py-4 whitespace-nowrap ${priceChangeClass}`}>
                     {formatPercent(priceChangePct)}
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-center">{getArrow(trade)}</td>
                   <td className={`px-6 py-4 whitespace-nowrap ${trade.trade_result >= 0 ? 'text-green-500' : 'text-red-500'}`}>
                     {formatCurrency(trade.trade_result)}
                   </td>
@@ -69,7 +71,7 @@ export const ResultsTable = ({ trades }) => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">{trade.days_held}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{trade.early_exit ? '✅' : '❌'}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">{getArrow(trade)}</td>
+                  
                 </tr>
               );
             })}
