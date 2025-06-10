@@ -1,0 +1,1 @@
+Start-Process -FilePath "cmd.exe" -ArgumentList "/c cd C:\Projetos\stratium\frontend && npm run dev" -WindowStyle Hidden

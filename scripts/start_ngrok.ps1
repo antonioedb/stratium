@@ -1,0 +1,1 @@
+Start-Process -FilePath "cmd.exe" -ArgumentList "/c cd C:\Users\conta\ && ngrok http http://localhost:3000" -WindowStyle Hidden

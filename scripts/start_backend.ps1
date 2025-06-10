@@ -1,0 +1,1 @@
+Start-Process -FilePath "cmd.exe" -ArgumentList "/c cd C:\Projetos\stratium\backend && venv\Scripts\activate && uvicorn main:app --reload" -WindowStyle Hidden
