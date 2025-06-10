@@ -14,9 +14,15 @@ warnings.filterwarnings('ignore')
 app = FastAPI(title="Strangle Backtester API")
 
 # Configurar CORS
+
+origins = [
+    "http://localhost:3000",  # Permite requisições do seu frontend local
+    "https://stratium.vercel.app",  # Permite requisições da sua URL do Vercel
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React dev server
+    allow_origins=origins,  # React dev server
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
