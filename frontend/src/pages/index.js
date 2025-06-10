@@ -42,6 +42,7 @@ export default function Home() {
 
     try {
       //const response = await axios.post('http://localhost:8000/backtest', modifiedData);
+      //const response = await axios.post(`${backendUrl}/backtest`, modifiedData);
       const response = await axios.post(`${backendUrl}/backtest`, modifiedData);
       if (response.data.success) {
         setResults(response.data);
