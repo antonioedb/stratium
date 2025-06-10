@@ -1,0 +1,70 @@
+# =========================
+# Ignorar arquivos do Frontend
+# =========================
+
+# Dependências
+/frontend/node_modules/
+/frontend/.pnp
+/frontend/.pnp.*
+/frontend/.yarn/
+/frontend/.yarn/patches/
+/frontend/.yarn/plugins/
+/frontend/.yarn/releases/
+/frontend/.yarn/versions/
+
+# Testes
+/frontend/coverage/
+
+# Next.js build e saída
+/frontend/.next/
+/frontend/out/
+/frontend/build/
+
+# Arquivos de ambiente
+/frontend/.env*
+/frontend/.vercel/
+
+# Logs e debug
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/.pnpm-debug.log*
+
+# Arquivos do sistema
+.DS_Store
+*.pem
+
+# TypeScript
+/frontend/*.tsbuildinfo
+/frontend/next-env.d.ts
+
+# =========================
+# Ignorar arquivos do Backend
+# =========================
+
+# Ambiente virtual Python
+/backend/venv/
+/backend/__pycache__/
+/backend/*.pyc
+/backend/*.pyo
+/backend/*.pyd
+
+# Arquivos de ambiente
+/backend/.env*
+/backend/.env
+
+# Logs
+/backend/*.log
+
+# Banco de dados SQLite (se usar)
+/backend/*.sqlite3
+
+# =========================
+# Ignorar arquivos gerais do sistema
+# =========================
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
