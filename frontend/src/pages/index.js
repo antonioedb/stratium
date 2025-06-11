@@ -105,7 +105,7 @@ export default function Home() {
 
       <header className="text-center mb-8">
         <h1 className="text-3xl font-bold">🎯 Sratium Backtester</h1>
-        <p className="text-gray-600">Sistema de Backteste para Estratégia Strangle </p>
+        <p className="text-gray-600">Sistema de Backteste para Estratégia Strangle  </p>
       </header>
 
       <main>
