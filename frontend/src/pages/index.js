@@ -3,21 +3,23 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { ResultsTable } from '../components/ResultsTable';
 import { StatsSummary } from '../components/StatsSummary';
-import { FaQuestionCircle } from 'react-icons/fa'; // Adicione este import
+import { FaQuestionCircle } from 'react-icons/fa';
 
 export default function Home() {
   const defaultValues = {
-    years: 2,
+    years: 1,
     num_contracts: 1000,
     early_profit_pct: 60,
-    friday_type: 'primeira'
+    friday_type: 'primeira',
+    //range_call_pct: 4.95,
+    //range_put_pct: 4.95,
   };
 
   const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues });
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [showHelp, setShowHelp] = useState(false); // Estado para o modal de ajuda
+  const [showHelp, setShowHelp] = useState(false);
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -140,24 +142,41 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">Dias antes do vencimento:</label>
-                <input
-                  type="number"
-                  {...register("days_before", { valueAsNumber: true })}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">Range (%):</label>
-                <input
-                  type="number"
-                  {...register("range_pct", { valueAsNumber: true })}
-                  step="0.01"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-            </div>
+  <div>
+    <label className="block text-gray-700 text-sm font-bold mb-2">Dias antes do vencimento:</label>
+    <input
+      type="number"
+      {...register("days_before", { valueAsNumber: true })}
+      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    />
+  </div>
+  {/* Campo duplo para Range Call e Range Put */}
+  <div>
+    <div className="flex gap-2">
+      <div className="w-1/2">
+        <label className="block text-gray-700 text-xs font-bold mb-1">Call (%)</label>
+        <input
+          type="number"
+          {...register("range_call_pct", { valueAsNumber: true })}
+          step="0.01"
+          placeholder="CALL"
+          className="shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div>
+      <div className="w-1/2">
+        <label className="block text-gray-700 text-xs font-bold mb-1">Put (%)</label>
+        <input
+          type="number"
+          {...register("range_put_pct", { valueAsNumber: true })}
+          step="0.01"
+          placeholder="PUT"
+          className="shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div>
+    </div>
+    <span className="text-xs text-gray-400 pl-1">Range de distância para cada lado</span>
+  </div>
+</div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
