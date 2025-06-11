@@ -1,19 +1,15 @@
-// src/pages/index.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { ResultsTable } from '../components/ResultsTable';
 import { StatsSummary } from '../components/StatsSummary';
+import { FaQuestionCircle } from 'react-icons/fa'; // Adicione este import
 
 export default function Home() {
   const defaultValues = {
-    //ticker: 'PETR4',
-    years: 2, // Período padrão: 2 anos
-    //days_before: 21,
-    //range_pct: 4.95,
-    //premium_pct: 1.71,
+    years: 2,
     num_contracts: 1000,
-    early_profit_pct: 60, // Saída antecipada padrão: 60%
+    early_profit_pct: 60,
     friday_type: 'primeira'
   };
 
@@ -21,6 +17,7 @@ export default function Home() {
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showHelp, setShowHelp] = useState(false); // Estado para o modal de ajuda
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -41,8 +38,6 @@ export default function Home() {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
     try {
-      //const response = await axios.post('http://localhost:8000/backtest', modifiedData);
-      //const response = await axios.post(`${backendUrl}/backtest`, modifiedData);
       const response = await axios.post(`${backendUrl}/backtest`, modifiedData);
       if (response.data.success) {
         setResults(response.data);
@@ -58,8 +53,58 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4">
+      {/* Botão de Ajuda no canto superior direito */}
+      <div className="flex justify-end mb-2">
+        <button
+          className="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold"
+          onClick={() => setShowHelp(true)}
+        >
+          <FaQuestionCircle className="text-xl" />
+          <span>Ajuda</span>
+        </button>
+      </div>
+
+      {/* Modal de Ajuda */}
+      {showHelp && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <div
+            className="bg-white rounded-lg shadow-lg p-2 relative overflow-auto"
+            style={{
+              maxWidth: '100vw',
+              maxHeight: '100vh',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl z-10"
+              onClick={() => setShowHelp(false)}
+              aria-label="Fechar"
+            >
+              &times;
+            </button>
+            <h2 className="text-lg font-bold mb-4 flex items-center gap-2 pl-2 pt-2 w-full">
+              <FaQuestionCircle className="text-blue-600" />
+              Ajuda
+            </h2>
+            <img
+              src="/Ajuda.PNG"
+              alt="Ajuda"
+              className="block"
+              style={{
+                width: 'auto',
+                height: 'auto',
+                maxWidth: 'none',
+                maxHeight: 'none',
+              }}
+            />
+          </div>
+        </div>
+      )}
+
       <header className="text-center mb-8">
-        <h1 className="text-3xl font-bold">🎯 Strangle Backtester</h1>
+        <h1 className="text-3xl font-bold">🎯 Sratium Backtester</h1>
         <p className="text-gray-600">Sistema de Backteste para Estratégia Strangle </p>
       </header>
 
