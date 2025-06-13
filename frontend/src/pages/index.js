@@ -59,51 +59,14 @@ export default function Home() {
       <div className="flex justify-end mb-2">
         <button
           className="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold"
-          onClick={() => setShowHelp(true)}
+          onClick={() => window.open('/Stratium.pdf', '_blank', 'noopener,noreferrer')}
         >
           <FaQuestionCircle className="text-xl" />
           <span>Ajuda</span>
         </button>
       </div>
 
-      {/* Modal de Ajuda */}
-      {showHelp && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-          <div
-            className="bg-white rounded-lg shadow-lg p-2 relative overflow-auto"
-            style={{
-              maxWidth: '100vw',
-              maxHeight: '100vh',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <button
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl z-10"
-              onClick={() => setShowHelp(false)}
-              aria-label="Fechar"
-            >
-              &times;
-            </button>
-            <h2 className="text-lg font-bold mb-4 flex items-center gap-2 pl-2 pt-2 w-full">
-              <FaQuestionCircle className="text-blue-600" />
-              Ajuda
-            </h2>
-            <img
-              src="/Ajuda.PNG"
-              alt="Ajuda"
-              className="block"
-              style={{
-                width: 'auto',
-                height: 'auto',
-                maxWidth: 'none',
-                maxHeight: 'none',
-              }}
-            />
-          </div>
-        </div>
-      )}
+
 
       <header className="text-center mb-8">
         <h1 className="text-3xl font-bold">🎯 Sratium Backtester</h1>
